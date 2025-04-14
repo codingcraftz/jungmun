@@ -1,103 +1,111 @@
 import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Bell, Calendar, Image as ImageIcon, MessageSquare, Users } from "lucide-react";
+import PushNotificationButton from "@/components/PushNotificationButton";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      {/* 헤더 */}
+      <header className="sticky top-0 bg-primary text-white p-4 shadow-md z-10">
+        <div className="flex items-center justify-between">
+          <h1 className="text-xl font-bold">중문배드민턴 클럽</h1>
+          <PushNotificationButton />
         </div>
+      </header>
+
+      {/* 메인 콘텐츠 */}
+      <main className="flex-1 p-4 pb-24">
+        {/* 환영 메시지 */}
+        <Card className="mb-6 bg-primary text-white">
+          <CardContent className="pt-6">
+            <h2 className="text-xl font-bold mb-2">안녕하세요!</h2>
+            <p>중문배드민턴 클럽에 오신 것을 환영합니다.</p>
+          </CardContent>
+        </Card>
+
+        {/* 메뉴 그리드 */}
+        <div className="grid grid-cols-2 gap-4">
+          <Card className="hover:bg-gray-100 transition-colors">
+            <CardHeader className="p-4 pb-2">
+              <CardTitle className="text-center flex flex-col items-center">
+                <Users className="h-8 w-8 mb-2 text-primary" />
+                <span className="text-sm">회원목록</span>
+              </CardTitle>
+            </CardHeader>
+          </Card>
+
+          <Card className="hover:bg-gray-100 transition-colors">
+            <CardHeader className="p-4 pb-2">
+              <CardTitle className="text-center flex flex-col items-center">
+                <Calendar className="h-8 w-8 mb-2 text-primary" />
+                <span className="text-sm">일정</span>
+              </CardTitle>
+            </CardHeader>
+          </Card>
+
+          <Card className="hover:bg-gray-100 transition-colors">
+            <CardHeader className="p-4 pb-2">
+              <CardTitle className="text-center flex flex-col items-center">
+                <MessageSquare className="h-8 w-8 mb-2 text-primary" />
+                <span className="text-sm">공지사항</span>
+              </CardTitle>
+            </CardHeader>
+          </Card>
+
+          <Card className="hover:bg-gray-100 transition-colors">
+            <CardHeader className="p-4 pb-2">
+              <CardTitle className="text-center flex flex-col items-center">
+                <ImageIcon className="h-8 w-8 mb-2 text-primary" />
+                <span className="text-sm">갤러리</span>
+              </CardTitle>
+            </CardHeader>
+          </Card>
+        </div>
+
+        {/* 최신 공지사항 */}
+        <h3 className="font-bold text-lg mt-8 mb-4">최신 공지사항</h3>
+        <Card className="mb-4">
+          <CardHeader className="p-4 pb-1">
+            <CardTitle className="text-base">정기 모임 안내</CardTitle>
+            <CardDescription className="text-xs">2023.12.20</CardDescription>
+          </CardHeader>
+          <CardContent className="p-4 pt-2">
+            <p className="text-sm">이번 주 토요일 정기 모임은 오후 3시부터 진행됩니다.</p>
+          </CardContent>
+        </Card>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+      {/* 하단 내비게이션 */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around p-2">
+        <Button variant="ghost" className="flex flex-col items-center text-xs py-1 h-auto">
+          <Users className="h-5 w-5 mb-1" />
+          <span>회원</span>
+        </Button>
+        <Button variant="ghost" className="flex flex-col items-center text-xs py-1 h-auto">
+          <Calendar className="h-5 w-5 mb-1" />
+          <span>일정</span>
+        </Button>
+        <Button
+          variant="ghost"
+          className="flex flex-col items-center text-xs py-1 h-auto text-primary"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <MessageSquare className="h-5 w-5 mb-1" />
+          <span>공지</span>
+        </Button>
+        <Button variant="ghost" className="flex flex-col items-center text-xs py-1 h-auto">
+          <ImageIcon className="h-5 w-5 mb-1" />
+          <span>갤러리</span>
+        </Button>
+      </nav>
     </div>
   );
 }
